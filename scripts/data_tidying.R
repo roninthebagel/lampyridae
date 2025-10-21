@@ -55,7 +55,7 @@ lampyridae_clean_names |>
 lampyridae_clean_names |> 
   duplicated() |>  
   sum() 
-# 42 duplicated rows
+# 30 duplicated rows
 
 # inspecting the duplicated rows
 lampyridae_clean_names |>
@@ -70,25 +70,21 @@ lampyridae_no_dupes <- lampyridae_clean_names |>
 
 ### --- handling missing data --- ###
 
+# firstly removing rows where habitat column contains N/A values
+lampyridae_complete <- subset(lampyridae_no_dupes, habitat !='N/A' )
+# usually with data frames with high amounts of missing data, imputing the missing values with the mean would be the best option. but in this case it was a major categorical variable with missing data, so removing the rows was my only option
+
 # checking for missing data
-lampyridae_no_dupes |>
+lampyridae_complete |>
   # Filter rows where g5_lampyridae is NA
   filter(is.na(g5_lampyridae)) |> 
   # Group by project_sample_id and habitat
   group_by(project_sample_id, habitat) |>                 
   summarise(n_missing = n())    
+# 14 missing
+# ~ 2% of data missing - can remove rows
 
-# checking for missing data
-lampyridae_no_dupes |>
-  # Filter rows where culmen length is NA
-  filter(is.na(habitat)) |> 
-  # Group by species, sex and island
-  group_by(g5_lampyridae) |>                 
-  summarise(n_missing = n())    
-
-# there is no missing data, but missing data recorded as N/A
-
-# removing rows where habitat column contains N/A values
-lampyridae_complete <- subset(lampyridae_no_dupes, habitat !='N/A' )
-
+# removing rows with missing data
+lampyridae_end <- lampyridae_complete |> 
+  drop_na(project_sample_id, habitat, g5_lampyridae, total_individuals)
 
