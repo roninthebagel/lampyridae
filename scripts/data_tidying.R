@@ -14,3 +14,17 @@ summary(lampyridae)
 # includes data types, missing data, and statistics
 skimr::skim(lampyridae)
 
+### --- cleaning column names --- ###
+
+# checking the data column names
+colnames(lampyridae)
+# column names inconsistent
+# mix of capital letters and punctuation
+
+# cleaning column names
+lampyridae_clean_names <- janitor::clean_names(lampyridae)
+
+# checking new column names
+colnames(lampyridae_clean_names)
+# names now standardised
+
