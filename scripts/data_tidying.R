@@ -36,13 +36,17 @@ colnames(lampyridae_clean_names)
 lampyridae_clean_names |>  
   distinct(habitat)
 # no typos under habitat column
-# but there are missing values highlighted by this command
+# but there are missing values highlighted by this command as represented by #N/A
+
 
 # checking lampyridae count column
 lampyridae_clean_names |>  
   distinct(g5_lampyridae)
 # no typos under count column
-# but there are missing values highlighted by this command
+# but there are missing values highlighted by this command as represented by #N/A
+
+# missing values will not be highlighted becaused of this character, need to remove the #
+
 
 ### --- checking for duplications --- ###
 
@@ -63,5 +67,28 @@ lampyridae_clean_names |>
 # removing duplicated rows
 lampyridae_no_dupes <- lampyridae_clean_names |> 
   distinct()
+
+### --- handling missing data --- ###
+
+# checking for missing data
+lampyridae_no_dupes |>
+  # Filter rows where g5_lampyridae is NA
+  filter(is.na(g5_lampyridae)) |> 
+  # Group by project_sample_id and habitat
+  group_by(project_sample_id, habitat) |>                 
+  summarise(n_missing = n())    
+
+# checking for missing data
+lampyridae_no_dupes |>
+  # Filter rows where culmen length is NA
+  filter(is.na(habitat)) |> 
+  # Group by species, sex and island
+  group_by(g5_lampyridae) |>                 
+  summarise(n_missing = n())    
+
+# there is no missing data, but missing data recorded as N/A
+
+# removing rows where habitat column contains N/A values
+lampyridae_complete <- subset(lampyridae_no_dupes, habitat !='N/A' )
 
 
