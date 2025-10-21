@@ -28,3 +28,19 @@ lampyridae_clean_names <- janitor::clean_names(lampyridae)
 colnames(lampyridae_clean_names)
 # names now standardised
 
+### --- checking for typos --- ###
+
+# prints each unique character string in the data 
+# only needs to be checked in required categorical variable columns
+# checking habitat column
+lampyridae_clean_names |>  
+  distinct(habitat)
+# no typos under habitat column
+# but there are missing values highlighted by this command
+
+# checking lampyridae count column
+lampyridae_clean_names |>  
+  distinct(g5_lampyridae)
+# no typos under count column
+# but there are missing values highlighted by this command
+
