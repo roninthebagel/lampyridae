@@ -1,5 +1,5 @@
 # reading csv file
-lampyridae <- read.csv("data/lampyridae_counts.csv")
+lampyridae <- read.csv("data/lampyridae_counts_new.csv")
 
 ### --- looking at descriptive data --- ###
 
@@ -38,7 +38,6 @@ lampyridae_clean_names |>
 # no typos under habitat column
 # but there are missing values highlighted by this command as represented by #N/A
 
-
 # checking lampyridae count column
 lampyridae_clean_names |>  
   distinct(g5_lampyridae)
@@ -55,7 +54,7 @@ lampyridae_clean_names |>
 lampyridae_clean_names |> 
   duplicated() |>  
   sum() 
-# 30 duplicated rows
+# 0 duplicated rows
 
 # inspecting the duplicated rows
 lampyridae_clean_names |>
@@ -64,14 +63,10 @@ lampyridae_clean_names |>
   dplyr::ungroup() |> view()
 # all the duplicated rows are completely empty rows - can be removed
 
-# removing duplicated rows
-lampyridae_no_dupes <- lampyridae_clean_names |> 
-  distinct()
-
 ### --- handling missing data --- ###
 
 # firstly removing rows where habitat column contains N/A values
-lampyridae_complete <- subset(lampyridae_no_dupes, habitat !='N/A' )
+lampyridae_complete <- subset(lampyridae_clean_names, habitat !='N/A' )
 # usually with data frames with high amounts of missing data, imputing the missing values with the mean would be the best option. but in this case it was a major categorical variable with missing data, so removing the rows was my only option
 
 # checking for missing data
@@ -81,12 +76,7 @@ lampyridae_complete |>
   # Group by project_sample_id and habitat
   group_by(project_sample_id, habitat) |>                 
   summarise(n_missing = n())    
-# 14 missing
-# ~ 2% of data missing - can remove rows
-
-# removing rows with missing data
-lampyridae_end <- lampyridae_complete |> 
-  drop_na(project_sample_id, habitat, g5_lampyridae, total_individuals)
+# 0 missing data
 
 # saving new dataset
-write.csv(lampyridae_end, file = "data/lampyridae_tidy.csv")
+write.csv(lampyridae_complete, file = "data/lampyridae_tidy.csv")
