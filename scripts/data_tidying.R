@@ -44,3 +44,24 @@ lampyridae_clean_names |>
 # no typos under count column
 # but there are missing values highlighted by this command
 
+### --- checking for duplications --- ###
+
+# check for duplicates across whole dataset
+# rows in the data
+lampyridae_clean_names |> 
+  duplicated() |>  
+  sum() 
+# 42 duplicated rows
+
+# inspecting the duplicated rows
+lampyridae_clean_names |>
+  dplyr::group_by(dplyr::across(everything())) |>
+  dplyr::filter(dplyr::n() > 1) |>
+  dplyr::ungroup() |> view()
+# all the duplicated rows are completely empty rows - can be removed
+
+# removing duplicated rows
+lampyridae_no_dupes <- lampyridae_clean_names |> 
+  distinct()
+
+
