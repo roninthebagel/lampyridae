@@ -88,3 +88,5 @@ lampyridae_complete |>
 lampyridae_end <- lampyridae_complete |> 
   drop_na(project_sample_id, habitat, g5_lampyridae, total_individuals)
 
+# saving new dataset
+write.csv(lampyridae_end, file = "data/lampyridae_tidy.csv")
