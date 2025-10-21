@@ -12,6 +12,14 @@ lampyridae_scatter_alpha <- lampyridae_only |>
   geom_point()
 print(lampyridae_scatter_alpha)
 
+# saving lampyridae scatter plot
+ggsave("figures/lampyridae_scatter_alpha.pdf", 
+       plot = lampyridae_scatter_alpha, 
+       width = 25,
+       height = 15, 
+       units = "cm", 
+       device = "pdf") 
+
 # making a violin plot
 lampyridae_violin_alpha <- lampyridae_only |> 
   ggplot(aes(x = habitat, 
@@ -19,6 +27,14 @@ lampyridae_violin_alpha <- lampyridae_only |>
   geom_violin(width = 0.5) +
   labs(title = "Lampyridae")
 print(lampyridae_violin_alpha)
+
+# saving lampyridae violin plot
+ggsave("figures/lampyridae_violin_alpha.pdf", 
+       plot = lampyridae_violin_alpha, 
+       width = 25,
+       height = 15, 
+       units = "cm", 
+       device = "pdf") 
 
 # making a bar plot with standar error lines
 
@@ -37,6 +53,14 @@ lampyridae_bar_alpha <- lampyridae_summary |>
                     ymax = mean+sd))
 print(lampyridae_bar_alpha)
 
+# saving the bar plot
+ggsave("figures/lampyridae_bar_alpha.pdf", 
+       plot = lampyridae_bar_alpha, 
+       width = 25,
+       height = 15, 
+       units = "cm", 
+       device = "pdf") 
+
 ### --- beta diversity --- ###
 
 # using lampyridae counts to measure abundances in each habitat, and comparing counts to total number of individuals across all families
@@ -47,12 +71,20 @@ totals_only <- filter(.data = lampyridae_complete,
 
 # making a violin plot to present total individual abundances
 
-total_violin_alpha <- totals_only |> 
+total_violin_beta <- totals_only |> 
   ggplot(aes(x = habitat, 
              y = g5_lampyridae)) +
   geom_violin(width = 0.5) +
   labs(title = "Total")
-print(total_violin_alpha)
+print(total_violin_beta)
+
+# saving totals plot
+ggsave("figures/total_violin_beta.pdf", 
+       plot = total_violin_beta, 
+       width = 25,
+       height = 15, 
+       units = "cm", 
+       device = "pdf") 
 
 # combined plot
 combined_violin_beta <- lampyridae_complete |> 
@@ -61,7 +93,23 @@ combined_violin_beta <- lampyridae_complete |>
   geom_violin(aes(colour = count_type), width = 0.5)
 print(combined_violin_beta)
 
+# saving combined plot
+ggsave("figures/combined_violin_beta.pdf", 
+       plot = combined_violin_beta, 
+       width = 40,
+       height = 15, 
+       units = "cm", 
+       device = "pdf") 
+
 # alternatively, the two plots side by side
 
-duo_plot_beta <- lampyridae_violin_alpha + total_violin_alpha
+duo_plot_beta <- lampyridae_violin_alpha + total_violin_beta
 print(duo_plot_beta)
+
+# saving duo plot
+ggsave("figures/duo_plot_beta.pdf", 
+       plot = duo_plot_beta, 
+       width = 50,
+       height = 15, 
+       units = "cm", 
+       device = "pdf") 
