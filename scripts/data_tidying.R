@@ -1,5 +1,5 @@
 # reading csv file
-lampyridae <- read.csv("data/mexico.csv")
+lampyridae <- read.csv("data/lampyridae_counts.csv")
 
 ### --- looking at descriptive data --- ###
 
@@ -36,16 +36,13 @@ colnames(lampyridae_clean_names)
 lampyridae_clean_names |>  
   distinct(habitat)
 # no typos under habitat column
-# but there are missing values highlighted by this command as represented by #N/A
+# but there are missing values highlighted by this command
 
 # checking lampyridae count column
 lampyridae_clean_names |>  
-  distinct(g5_lampyridae)
+  distinct(count_type)
 # no typos under count column
-# but there are missing values highlighted by this command as represented by #N/A
-
-# missing values will not be highlighted becaused of this character, need to remove the #
-
+# but there are missing values highlighted by this command
 
 ### --- checking for duplications --- ###
 
@@ -58,18 +55,17 @@ lampyridae_clean_names |>
 
 ### --- handling missing data --- ###
 
-# firstly removing rows where habitat column contains N/A values
-lampyridae_complete <- subset(lampyridae_clean_names, habitat !='N/A' )
-# usually with data frames with high amounts of missing data, imputing the missing values with the mean would be the best option. but in this case it was a major categorical variable with missing data, so removing the rows was my only option
-
 # checking for missing data
-lampyridae_complete |>
+lampyridae_clean_names |>
   # Filter rows where g5_lampyridae is NA
-  filter(is.na(g5_lampyridae)) |> 
+  filter(is.na(count)) |> 
   # Group by project_sample_id and habitat
-  group_by(project_sample_id, habitat) |>                 
-  summarise(n_missing = n())    
-# 0 missing data
+  group_by(project_sample_id, habitat, count_type) |>                 
+  summarise(n_missing = n())  
+# there is no missing data, but missing data recorded as N/A
+
+# removing rows where habitat column contains N/A values
+lampyridae_complete <- subset(lampyridae_clean_names, habitat !='N/A' )
 
 # saving new dataset
 write.csv(lampyridae_complete, file = "data/lampyridae_tidy.csv")
