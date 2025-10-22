@@ -20,4 +20,8 @@ lampyridae_summary_beta <- lampyridae_complete |>
 
 # the total diversity of the ecosystem 
 
-??vegan
+# total lampyridae and total diversities
+lampyridae_summary_gamma <- lampyridae_complete |> 
+  group_by(count_type) |> 
+  summarise(mean = mean(g5_lampyridae, na.rm =T),
+            sd = sd(g5_lampyridae, na.rm=T))
