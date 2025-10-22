@@ -1,5 +1,5 @@
 # reading csv file
-lampyridae <- read.csv("data/lampyridae_counts_new.csv")
+lampyridae <- read.csv("data/mexico.csv")
 
 ### --- looking at descriptive data --- ###
 
@@ -55,13 +55,6 @@ lampyridae_clean_names |>
   duplicated() |>  
   sum() 
 # 0 duplicated rows
-
-# inspecting the duplicated rows
-lampyridae_clean_names |>
-  dplyr::group_by(dplyr::across(everything())) |>
-  dplyr::filter(dplyr::n() > 1) |>
-  dplyr::ungroup() |> view()
-# all the duplicated rows are completely empty rows - can be removed
 
 ### --- handling missing data --- ###
 

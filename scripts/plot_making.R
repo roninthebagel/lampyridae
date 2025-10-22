@@ -39,7 +39,7 @@ ggsave("figures/lampyridae_violin_alpha.pdf",
 # making a bar plot with standar error lines
 
 # firstly have to generate statistics for the error lines
-lampyridae_summary <- lampyridae_only |> 
+lampyridae_summary_alpha <- lampyridae_only |> 
   group_by(habitat) |> 
   summarise(mean = mean(g5_lampyridae, na.rm =T),
             sd = sd(g5_lampyridae, na.rm=T))
