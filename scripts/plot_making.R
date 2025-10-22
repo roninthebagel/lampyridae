@@ -25,7 +25,21 @@ lampyridae_violin_alpha <- lampyridae_only |>
   ggplot(aes(x = habitat, 
              y = g5_lampyridae)) +
   geom_violin(width = 0.5) +
-  labs(title = "Lampyridae")
+  labs(title = "Lampyridae", 
+       x = "Habitat",
+       y = "Number of Individuals", 
+       caption = "The number of individuls of the Lampyridae Family found across different habitats") +
+  scale_x_discrete(labels = c("Deciduous forest","Highly disturbed 
+                              tropical dry forest", "Moderately disturbed 
+                              tropical dry forest", "Preserved 
+                              tropical dry forest")) +
+  theme_bw() +
+  theme(panel.border = element_rect(color="black"), 
+        axis.text = element_text(size = 10, angle = 45, hjust = 1), 
+        axis.title = element_text(size = 15), 
+        legend.text = element_text(size = 10), 
+        legend.title = element_text(size = 15),
+        plot.caption = element_text(hjust = 0))
 print(lampyridae_violin_alpha)
 
 # saving lampyridae violin plot
@@ -90,7 +104,23 @@ ggsave("figures/total_violin_alpha.pdf",
 combined_violin_beta <- lampyridae_complete |> 
   ggplot(aes(x = habitat, 
              y = g5_lampyridae)) +
-  geom_violin(aes(colour = count_type), width = 0.5)
+  geom_violin(aes(colour = count_type), width = 1) +
+  labs(title = "Lampyridae VS All Found Individuals", 
+       x = "Habitat",
+       y = "Number of Individuals", 
+       caption = "The number of individuls of the Lampyridae Family against the total number of individuals of all Coleoptera families, found across different habitats") +
+  scale_x_discrete(labels = c("Deciduous forest","Highly disturbed
+                              tropical dry forest", "Moderately disturbed
+                              tropical dry forest", "Preserved
+                              tropical dry forest")) +
+  scale_color_manual(name = "Family Count", labels = c("Lampyridae", "All Families"), values = c("cornflowerblue", "coral")) +
+  theme_bw() +
+  theme(panel.border = element_rect(color="black"), 
+        axis.text = element_text(size = 10, angle = 45, hjust = 1), 
+        axis.title = element_text(size = 15, vjust = -5), 
+        legend.text = element_text(size = 10), 
+        legend.title = element_text(size = 15),
+        plot.caption = element_text(hjust = 1))
 print(combined_violin_beta)
 
 # saving lampyridae scatter plot
