@@ -23,12 +23,12 @@ ggsave("figures/lampyridae_scatter_alpha.pdf",
 # making a violin plot
 lampyridae_violin_alpha <- lampyridae_only |> # stating new plot name and required dataset
   ggplot(aes(x = habitat, # stating which column to include for x axis
-             y = g5_lampyridae)) + # stating which column to include for x axis
+             y = g5_lampyridae)) + # stating which column to include for y axis
   geom_violin(width = 0.5) + # stating what plot to use (violin), as well as width of plotted "violins"
   labs(title = "Lampyridae", # adding plot title
        x = "Habitat", # specifying x axis title
-       y = "Number of Individuals", # specifying x axis title
-       caption = "The number of individuls of the Lampyridae Family found across different habitats") + # adding a plot caption
+       y = "Number of Individuals", # specifying y axis title
+       caption = "The number of individals of the Lampyridae Family found across different habitats") + # adding a plot caption
   scale_x_discrete(labels = c("Deciduous forest","Highly disturbed 
                               tropical dry forest", "Moderately disturbed 
                               tropical dry forest", "Preserved 
@@ -99,27 +99,27 @@ ggsave("figures/total_violin_alpha.pdf",
        device = "pdf") 
 
 # combined plot
-combined_violin_beta <- lampyridae_complete |> 
-  ggplot(aes(x = habitat, 
-             y = g5_lampyridae)) +
-  geom_violin(aes(colour = count_type), width = 1) +
-  labs(title = "Lampyridae VS All Found Individuals", 
-       x = "Habitat",
-       y = "Number of Individuals", 
-       caption = "The number of individuls of the Lampyridae Family against the total number of individuals of all Coleoptera families, found across different habitats") +
+combined_violin_beta <- lampyridae_complete |> # stating new plot name and required dataset
+  ggplot(aes(x = habitat, # stating which column to include for x axis
+             y = g5_lampyridae)) + # stating which column to include for y axis
+  geom_violin(aes(colour = count_type), width = 1) + # stating what plot to use (violin), as well as width of plotted "violins"
+  labs(title = "Lampyridae VS All Found Individuals", # adding plot title
+       x = "Habitat", # specifying x axis title
+       y = "Number of Individuals", # specifying y axis title
+       caption = "The number of individals of the Lampyridae Family against the total number of individuals of all Coleoptera families, found across different habitats") + # adding a plot caption
   scale_x_discrete(labels = c("Deciduous forest","Highly disturbed
                               tropical dry forest", "Moderately disturbed
                               tropical dry forest", "Preserved
-                              tropical dry forest")) +
+                              tropical dry forest")) + # modifying x axis labels (mainly to fit on multiple lines)
   scale_color_manual(name = "Family Count", labels = c("Lampyridae", "All Families"), values = c("cornflowerblue", "coral")) +
-  theme_bw() +
-  theme(panel.border = element_rect(color="black"), 
-        axis.text = element_text(size = 10, angle = 45, hjust = 1), 
-        axis.title = element_text(size = 15, vjust = -5), 
-        legend.text = element_text(size = 10), 
-        legend.title = element_text(size = 15),
-        plot.caption = element_text(hjust = 1))
-print(combined_violin_beta)
+  theme_bw() + # making theme black and white (changes background and plot colours)
+  theme(panel.border = element_rect(color="black"), # making primary plot border colour black
+        axis.text = element_text(size = 10, angle = 45, hjust = 1), # resizing, adjusting angle, and moving axis labels
+        axis.title = element_text(size = 15, vjust = -5), # resizing axis title
+        legend.text = element_text(size = 10), # resizing legend text
+        legend.title = element_text(size = 15), # resizing legend title
+        plot.caption = element_text(hjust = 1)) # resizing plot caption
+print(combined_violin_beta) # printing plot into plots area
 
 # saving lampyridae scatter plot
 ggsave("figures/combined_violin_beta.pdf", 
