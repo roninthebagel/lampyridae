@@ -102,19 +102,23 @@ ggsave("figures/total_violin_alpha.pdf",
 combined_violin_beta <- lampyridae_complete |> # stating new plot name and required dataset
   ggplot(aes(x = habitat, # stating which column to include for x axis
              y = g5_lampyridae)) + # stating which column to include for y axis
-  geom_violin(aes(colour = count_type), width = 1) + # stating what plot to use (violin), as well as width of plotted "violins"
+  geom_violin(aes(colour = count_type), width = 1) + 
+  # stating what plot to use (violin), as well as width of plotted "violins"
   labs(title = "Lampyridae VS All Found Individuals", # adding plot title
        x = "Habitat", # specifying x axis title
        y = "Number of Individuals", # specifying y axis title
-       caption = "The number of individals of the Lampyridae Family against the total number of individuals of all Coleoptera families, found across different habitats") + # adding a plot caption
+       caption = "The number of individals of the Lampyridae Family against the total number of individuals of all Coleoptera families, found across different habitats") + 
+  # adding a plot caption
   scale_x_discrete(labels = c("Deciduous forest","Highly disturbed
                               tropical dry forest", "Moderately disturbed
                               tropical dry forest", "Preserved
-                              tropical dry forest")) + # modifying x axis labels (mainly to fit on multiple lines)
+                              tropical dry forest")) + 
+  # modifying x axis labels (mainly to fit on multiple lines)
   scale_color_manual(name = "Family Count", labels = c("Lampyridae", "All Families"), values = c("cornflowerblue", "coral")) +
   theme_bw() + # making theme black and white (changes background and plot colours)
   theme(panel.border = element_rect(color="black"), # making primary plot border colour black
-        axis.text = element_text(size = 10, angle = 45, hjust = 1), # resizing, adjusting angle, and moving axis labels
+        axis.text = element_text(size = 10, angle = 45, hjust = 1), 
+        # resizing, adjusting angle, and moving axis labels
         axis.title = element_text(size = 15, vjust = -5), # resizing axis title
         legend.text = element_text(size = 10), # resizing legend text
         legend.title = element_text(size = 15), # resizing legend title
