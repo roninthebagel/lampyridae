@@ -1,9 +1,9 @@
-"","habitat","count_type","mean","sd"
-"1","Deciduous forest","lampyridae",0.0909090909090909,0.301511344577764
-"2","Deciduous forest","total",35.0909090909091,29.3681955368543
-"3","Highly disturbed tropical dry forest","lampyridae",1.16296296296296,3.36106596519839
-"4","Highly disturbed tropical dry forest","total",19.1851851851852,23.1560682581796
-"5","Moderately disturbed tropical dry forest","lampyridae",0.769230769230769,2.43457688784248
-"6","Moderately disturbed tropical dry forest","total",19.1394230769231,23.640111324477
-"7","Preserved tropical dry forest","lampyridae",0.377551020408163,1.75368148766721
-"8","Preserved tropical dry forest","total",17.5340136054422,27.5044619317814
+"","count_type","habitat","mean","sd"
+"1","lampyridae","Deciduous forest",0.0909090909090909,0.301511344577764
+"2","lampyridae","Highly disturbed tropical dry forest",1.16296296296296,3.36106596519839
+"3","lampyridae","Moderately disturbed tropical dry forest",0.769230769230769,2.43457688784248
+"4","lampyridae","Preserved tropical dry forest",0.377551020408163,1.75368148766721
+"5","total","Deciduous forest",35.0909090909091,29.3681955368543
+"6","total","Highly disturbed tropical dry forest",19.1851851851852,23.1560682581796
+"7","total","Moderately disturbed tropical dry forest",19.1394230769231,23.640111324477
+"8","total","Preserved tropical dry forest",17.5340136054422,27.5044619317814
