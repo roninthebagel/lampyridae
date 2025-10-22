@@ -21,26 +21,24 @@ ggsave("figures/lampyridae_scatter_alpha.pdf",
        device = "pdf") 
 
 # making a violin plot
-lampyridae_violin_alpha <- lampyridae_only |> 
-  ggplot(aes(x = habitat, 
-             y = g5_lampyridae)) +
-  geom_violin(width = 0.5) +
-  labs(title = "Lampyridae", 
-       x = "Habitat",
-       y = "Number of Individuals", 
-       caption = "The number of individuls of the Lampyridae Family found across different habitats") +
+lampyridae_violin_alpha <- lampyridae_only |> # stating new plot name and required dataset
+  ggplot(aes(x = habitat, # stating which column to include for x axis
+             y = g5_lampyridae)) + # stating which column to include for x axis
+  geom_violin(width = 0.5) + # stating what plot to use (violin), as well as width of plotted "violins"
+  labs(title = "Lampyridae", # adding plot title
+       x = "Habitat", # specifying x axis title
+       y = "Number of Individuals", # specifying x axis title
+       caption = "The number of individuls of the Lampyridae Family found across different habitats") + # adding a plot caption
   scale_x_discrete(labels = c("Deciduous forest","Highly disturbed 
                               tropical dry forest", "Moderately disturbed 
                               tropical dry forest", "Preserved 
-                              tropical dry forest")) +
-  theme_bw() +
-  theme(panel.border = element_rect(color="black"), 
-        axis.text = element_text(size = 10, angle = 45, hjust = 1), 
-        axis.title = element_text(size = 15), 
-        legend.text = element_text(size = 10), 
-        legend.title = element_text(size = 15),
-        plot.caption = element_text(hjust = 0))
-print(lampyridae_violin_alpha)
+                              tropical dry forest")) + # modifying x axis labels (mainly to fit on multiple lines)
+  theme_bw() + # making theme black and white (changes background and plot colours)
+  theme(panel.border = element_rect(color="black"), # making primary plot border colour black
+        axis.text = element_text(size = 10, angle = 45, hjust = 1), # resizing, adjusting angle, and moving axis labels
+        axis.title = element_text(size = 15), # resizing axis title
+        plot.caption = element_text(hjust = 0)) # resizing plot caption
+print(lampyridae_violin_alpha) # printing plot into plots area
 
 # saving lampyridae violin plot
 ggsave("figures/lampyridae_violin_alpha.pdf", 
