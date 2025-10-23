@@ -16,9 +16,9 @@ lampyridae_summary_beta <- lampyridae_complete |>
   group_by(count_type, habitat) |> 
   # stating which columns to include in analysis, and what order to appear on table
   summarise(mean = mean(g5_lampyridae, na.rm =T), 
-            # stating i want to calculate means using values from g5_lampyridae column
+  # stating i want to calculate means using values from g5_lampyridae column
             sd = sd(g5_lampyridae, na.rm=T)) 
-            # stating i want to calculate standard deviations using values from g5_lampyridae column 
+  # stating i want to calculate standard deviations using values from g5_lampyridae column 
 
 # saving summmary table
 write.csv(lampyridae_summary_beta, file = "data/lampyridae_summary_beta.csv")
